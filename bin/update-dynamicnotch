@@ -24,6 +24,11 @@ cask "dynamicnotch" do
   desc "Dynamic Notch for macOS"
   homepage "https://github.com/jackson-storm/DynamicNotch"
 
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
   app "DynamicNotch.app"
 end
 CASK
