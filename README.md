@@ -6,18 +6,18 @@ Local Homebrew tap for apps not published in official Homebrew repositories.
 
 Publish this directory as GitHub repository named `homebrew-tap` under your account, for example:
 
-- `https://github.com/dyakovlev/homebrew-tap`
+- `https://github.com/hordesnake1/homebrew-tap`
 
 ## Add tap
 
 ```bash
-brew tap dyakovlev/local https://github.com/dyakovlev/homebrew-tap
+brew tap dyakovlev/local https://github.com/hordesnake1/homebrew-tap
 ```
 
 For local testing before pushing:
 
 ```bash
-brew tap dyakovlev/local /Users/dyakovlev/homebrew-tap
+brew tap hordesnake1/local /Users/dyakovlev/homebrew-tap
 ```
 
 ## Install
