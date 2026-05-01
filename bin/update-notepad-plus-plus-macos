@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+REPO="notepad-plus-plus-mac/notepad-plus-plus-macos"
+CASK_FILE="$(cd "$(dirname "$0")/.." && pwd)/Casks/notepad-plus-plus-macos.rb"
+API_URL="https://api.github.com/repos/${REPO}/releases/latest"
+
+curl_args=(
+  -fsSL
+  -H "Accept: application/vnd.github+json"
+  -H "X-GitHub-Api-Version: 2022-11-28"
+  -H "User-Agent: homebrew-tap-updater"
+)
+
+if [[ -n "${GITHUB_TOKEN:-}" ]]; then
+  curl_args+=( -H "Authorization: Bearer ${GITHUB_TOKEN}" )
+fi
+
+json=$(curl "${curl_args[@]}" "$API_URL")
+tag=$(printf '%s' "$json" | ruby -rjson -e 'j=JSON.parse(STDIN.read); puts j.fetch("tag_name")')
+version=${tag#v}
+asset=$(printf '%s' "$json" | ruby -rjson -e 'j=JSON.parse(STDIN.read); puts j.fetch("assets").map{|a| a["name"]}.find{|n| n =~ /^Notepad\+\+v.*\.dmg$/ }')
+
+if [[ -z "$asset" ]]; then
+  echo "No DMG asset found in latest release" >&2
+  exit 1
+fi
+
+cat > "$CASK_FILE" <<CASK
+cask "notepad-plus-plus-macos" do
+  version "${version}"
+  sha256 :no_check
+
+  url "https://github.com/notepad-plus-plus-mac/notepad-plus-plus-macos/releases/download/${tag}/${asset}"
+  name "Notepad++ for macOS"
+  desc "Notepad++ distribution for macOS"
+  homepage "https://github.com/notepad-plus-plus-mac/notepad-plus-plus-macos"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
+  app "Notepad++.app"
+end
+CASK
+
+echo "Updated ${CASK_FILE} to ${version} (${asset})"
