@@ -89,3 +89,9 @@ git push
 For full reproducible deployment instructions for another machine or another repository, see:
 
 - `AGENT-RUNBOOK.md`
+
+## Additional archived operator docs
+
+Operational Telegram proxy notes copied from the local workspace are stored under:
+
+- `docs/telegram-proxy/README.md`
