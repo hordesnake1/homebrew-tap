@@ -1,5 +1,5 @@
 cask "happ-desktop" do
-  version "2.11.0"
+  version "2.12.0"
   sha256 :no_check
 
   url "https://github.com/Happ-proxy/happ-desktop/releases/download/#{version}/Happ.macOS.universal.dmg"
@@ -11,7 +11,7 @@ cask "happ-desktop" do
     url "https://api.github.com/repos/Happ-proxy/happ-desktop/releases"
     strategy :json do |json|
       json.map do |release|
-        next if release["draft"] || release["prerelease"]
+        next if release["draft"]
 
         release["tag_name"]&.delete_prefix("v")
       end

@@ -90,7 +90,7 @@ git push
 - Casks use `sha256 :no_check` because the upstream asset URL is versioned and this tap is intended for fast-moving third-party releases.
 - `livecheck` is configured in each cask, so Homebrew can report the currently known upstream version.
 - GitHub Actions must be enabled for this repository, and workflow permissions must allow `contents: write`.
-- `happ-desktop` intentionally tracks the newest non-prerelease item from the releases API because upstream currently marks an older release as GitHub `latest`.
+- `happ-desktop` intentionally tracks the newest non-draft item from the releases API, including prereleases, because upstream currently marks an older release as GitHub `latest`.
 
 ## Agent runbook
 

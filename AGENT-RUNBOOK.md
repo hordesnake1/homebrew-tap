@@ -268,4 +268,4 @@ brew list --cask
 - If a GitHub release changes asset naming conventions, the updater regex must be adjusted.
 - Homebrew tap clones under `/opt/homebrew/Library/Taps/...` may lag behind if manually edited; if needed, reset the tap clone to `origin/main`.
 - Existing manually copied `.app` bundles in `/Applications` can block initial `brew install --cask`; move or delete the manual app before installing through Homebrew.
-- Some upstream repositories do not keep GitHub `latest` aligned with the newest stable release. In that case use the releases list and explicitly skip drafts/prereleases, as `happ-desktop` does.
+- Some upstream repositories do not keep GitHub `latest` aligned with the newest release. In that case use the releases list and explicitly decide whether to include prereleases. `happ-desktop` includes prereleases and only skips drafts.

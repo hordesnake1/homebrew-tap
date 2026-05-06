@@ -19,8 +19,8 @@ fi
 json=$(curl "${curl_args[@]}" "$API_URL")
 release_json=$(printf '%s' "$json" | ruby -rjson -e '
   releases = JSON.parse(STDIN.read)
-  release = releases.find { |item| !item.fetch("draft") && !item.fetch("prerelease") }
-  abort "No stable release found" if release.nil?
+  release = releases.find { |item| !item.fetch("draft") }
+  abort "No non-draft release found" if release.nil?
   puts JSON.generate(release)
 ')
 tag=$(printf '%s' "$release_json" | ruby -rjson -e 'j=JSON.parse(STDIN.read); puts j.fetch("tag_name")')
@@ -28,7 +28,7 @@ version=${tag#v}
 asset=$(printf '%s' "$release_json" | ruby -rjson -e 'j=JSON.parse(STDIN.read); puts j.fetch("assets").map { |a| a["name"] }.find { |name| name == "Happ.macOS.universal.dmg" }')
 
 if [[ -z "$asset" ]]; then
-  echo "No universal macOS DMG asset found in latest stable release" >&2
+  echo "No universal macOS DMG asset found in latest non-draft release" >&2
   exit 1
 fi
 
@@ -46,7 +46,7 @@ cask "happ-desktop" do
     url "https://api.github.com/repos/Happ-proxy/happ-desktop/releases"
     strategy :json do |json|
       json.map do |release|
-        next if release["draft"] || release["prerelease"]
+        next if release["draft"]
 
         release["tag_name"]&.delete_prefix("v")
       end
