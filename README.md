@@ -4,6 +4,7 @@ Homebrew tap for third-party macOS casks that are not maintained in official Hom
 
 Current casks:
 - `dynamicnotch`
+- `happ-desktop`
 - `notepad-plus-plus-macos`
 
 Repository:
@@ -25,6 +26,7 @@ brew tap hordesnake1/local /Users/dyakovlev/homebrew-tap
 
 ```bash
 brew install --cask dynamicnotch
+brew install --cask happ-desktop
 brew install --cask notepad-plus-plus-macos
 ```
 
@@ -35,6 +37,7 @@ Standard Homebrew flow:
 ```bash
 brew update
 brew upgrade --cask dynamicnotch
+brew upgrade --cask happ-desktop
 brew upgrade --cask notepad-plus-plus-macos
 ```
 
@@ -51,6 +54,9 @@ Each cask has its own updater script and GitHub Actions workflow.
 - `dynamicnotch`:
   - updater: `bin/update-dynamicnotch`
   - workflow: `.github/workflows/update-dynamicnotch.yml`
+- `happ-desktop`:
+  - updater: `bin/update-happ-desktop`
+  - workflow: `.github/workflows/update-happ-desktop.yml`
 - `notepad-plus-plus-macos`:
   - updater: `bin/update-notepad-plus-plus-macos`
   - workflow: `.github/workflows/update-notepad-plus-plus-macos.yml`
@@ -66,6 +72,7 @@ Once the cask file is bumped in the tap, `brew update` and `brew upgrade` on the
 
 ```bash
 /Users/dyakovlev/homebrew-tap/bin/update-dynamicnotch
+/Users/dyakovlev/homebrew-tap/bin/update-happ-desktop
 /Users/dyakovlev/homebrew-tap/bin/update-notepad-plus-plus-macos
 ```
 
@@ -83,6 +90,7 @@ git push
 - Casks use `sha256 :no_check` because the upstream asset URL is versioned and this tap is intended for fast-moving third-party releases.
 - `livecheck` is configured in each cask, so Homebrew can report the currently known upstream version.
 - GitHub Actions must be enabled for this repository, and workflow permissions must allow `contents: write`.
+- `happ-desktop` intentionally tracks the newest non-prerelease item from the releases API because upstream currently marks an older release as GitHub `latest`.
 
 ## Agent runbook
 

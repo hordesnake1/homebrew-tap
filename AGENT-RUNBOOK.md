@@ -17,6 +17,7 @@ Repository:
 
 Implemented casks:
 - `dynamicnotch`
+- `happ-desktop`
 - `notepad-plus-plus-macos`
 
 ## Preconditions
@@ -89,6 +90,7 @@ end
 
 Reference files in this repository:
 - `Casks/dynamicnotch.rb`
+- `Casks/happ-desktop.rb`
 - `Casks/notepad-plus-plus-macos.rb`
 
 ## Step 3: Create an updater script per app
@@ -108,6 +110,7 @@ Required implementation details:
 
 Reference scripts:
 - `bin/update-dynamicnotch`
+- `bin/update-happ-desktop`
 - `bin/update-notepad-plus-plus-macos`
 
 ## Step 4: Create GitHub Actions workflow per app
@@ -131,7 +134,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Update cask from upstream release
         env:
@@ -153,6 +156,7 @@ jobs:
 
 Reference workflows:
 - `.github/workflows/update-dynamicnotch.yml`
+- `.github/workflows/update-happ-desktop.yml`
 - `.github/workflows/update-notepad-plus-plus-macos.yml`
 
 ## Step 5: Commit local repository
@@ -183,6 +187,7 @@ Open the repository in GitHub and verify that Actions are enabled.
 
 Then run each workflow manually once:
 - `Update DynamicNotch cask`
+- `Update Happ Desktop cask`
 - `Update Notepad++ macOS cask`
 
 Expected successful behavior:
@@ -209,6 +214,7 @@ Then install apps:
 
 ```bash
 brew install --cask dynamicnotch
+brew install --cask happ-desktop
 brew install --cask notepad-plus-plus-macos
 ```
 
@@ -217,6 +223,7 @@ brew install --cask notepad-plus-plus-macos
 ```bash
 brew update
 brew upgrade --cask dynamicnotch
+brew upgrade --cask happ-desktop
 brew upgrade --cask notepad-plus-plus-macos
 ```
 
@@ -261,3 +268,4 @@ brew list --cask
 - If a GitHub release changes asset naming conventions, the updater regex must be adjusted.
 - Homebrew tap clones under `/opt/homebrew/Library/Taps/...` may lag behind if manually edited; if needed, reset the tap clone to `origin/main`.
 - Existing manually copied `.app` bundles in `/Applications` can block initial `brew install --cask`; move or delete the manual app before installing through Homebrew.
+- Some upstream repositories do not keep GitHub `latest` aligned with the newest stable release. In that case use the releases list and explicitly skip drafts/prereleases, as `happ-desktop` does.
