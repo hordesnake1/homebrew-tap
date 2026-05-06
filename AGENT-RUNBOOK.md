@@ -18,7 +18,6 @@ Repository:
 Implemented casks:
 - `dynamicnotch`
 - `happ-desktop`
-- `notepad-plus-plus-macos`
 
 ## Preconditions
 
@@ -91,7 +90,6 @@ end
 Reference files in this repository:
 - `Casks/dynamicnotch.rb`
 - `Casks/happ-desktop.rb`
-- `Casks/notepad-plus-plus-macos.rb`
 
 ## Step 3: Create an updater script per app
 
@@ -111,7 +109,6 @@ Required implementation details:
 Reference scripts:
 - `bin/update-dynamicnotch`
 - `bin/update-happ-desktop`
-- `bin/update-notepad-plus-plus-macos`
 
 ## Step 4: Create GitHub Actions workflow per app
 
@@ -157,7 +154,6 @@ jobs:
 Reference workflows:
 - `.github/workflows/update-dynamicnotch.yml`
 - `.github/workflows/update-happ-desktop.yml`
-- `.github/workflows/update-notepad-plus-plus-macos.yml`
 
 ## Step 5: Commit local repository
 
@@ -188,7 +184,6 @@ Open the repository in GitHub and verify that Actions are enabled.
 Then run each workflow manually once:
 - `Update DynamicNotch cask`
 - `Update Happ Desktop cask`
-- `Update Notepad++ macOS cask`
 
 Expected successful behavior:
 - workflow exits green,
@@ -215,7 +210,6 @@ Then install apps:
 ```bash
 brew install --cask dynamicnotch
 brew install --cask happ-desktop
-brew install --cask notepad-plus-plus-macos
 ```
 
 ## Step 9: Normal update flow on the client machine
@@ -224,7 +218,6 @@ brew install --cask notepad-plus-plus-macos
 brew update
 brew upgrade --cask dynamicnotch
 brew upgrade --cask happ-desktop
-brew upgrade --cask notepad-plus-plus-macos
 ```
 
 If `brew-cask-upgrade` is installed:

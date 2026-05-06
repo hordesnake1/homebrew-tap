@@ -5,7 +5,6 @@ Homebrew tap for third-party macOS casks that are not maintained in official Hom
 Current casks:
 - `dynamicnotch`
 - `happ-desktop`
-- `notepad-plus-plus-macos`
 
 Repository:
 - `https://github.com/hordesnake1/homebrew-tap`
@@ -27,7 +26,6 @@ brew tap hordesnake1/local /Users/dyakovlev/homebrew-tap
 ```bash
 brew install --cask dynamicnotch
 brew install --cask happ-desktop
-brew install --cask notepad-plus-plus-macos
 ```
 
 ## Upgrade apps
@@ -38,7 +36,6 @@ Standard Homebrew flow:
 brew update
 brew upgrade --cask dynamicnotch
 brew upgrade --cask happ-desktop
-brew upgrade --cask notepad-plus-plus-macos
 ```
 
 If `brew-cask-upgrade` is installed:
@@ -57,9 +54,6 @@ Each cask has its own updater script and GitHub Actions workflow.
 - `happ-desktop`:
   - updater: `bin/update-happ-desktop`
   - workflow: `.github/workflows/update-happ-desktop.yml`
-- `notepad-plus-plus-macos`:
-  - updater: `bin/update-notepad-plus-plus-macos`
-  - workflow: `.github/workflows/update-notepad-plus-plus-macos.yml`
 
 Each workflow:
 1. checks the upstream GitHub release API on a schedule,
@@ -73,7 +67,6 @@ Once the cask file is bumped in the tap, `brew update` and `brew upgrade` on the
 ```bash
 /Users/dyakovlev/homebrew-tap/bin/update-dynamicnotch
 /Users/dyakovlev/homebrew-tap/bin/update-happ-desktop
-/Users/dyakovlev/homebrew-tap/bin/update-notepad-plus-plus-macos
 ```
 
 Then:
