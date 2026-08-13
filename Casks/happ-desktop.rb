@@ -1,5 +1,5 @@
 cask "happ-desktop" do
-  version "3.3.6"
+  version "4.0.5"
   sha256 :no_check
 
   url "https://github.com/Happ-proxy/happ-desktop/releases/download/#{version}/Happ.macOS.universal.dmg"
