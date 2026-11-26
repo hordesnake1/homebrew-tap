@@ -1,8 +1,8 @@
 cask "dynamicnotch" do
-  version "1.6.0"
+  version "1.6.5"
   sha256 :no_check
 
-  url "https://github.com/jackson-storm/DynamicNotch/releases/download/v1.6.0/DynamicNotch_v1.6.0.dmg"
+  url "https://github.com/jackson-storm/DynamicNotch/releases/download/v1.6.5/DynamicNotch_v1.6.5.dmg"
   name "DynamicNotch"
   desc "Dynamic Notch for macOS"
   homepage "https://github.com/jackson-storm/DynamicNotch"
